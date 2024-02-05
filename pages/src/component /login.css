@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
 * {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
 }
@@ -26,32 +26,33 @@ body {
 
 .container {
   width: 600px;
-  border-radius: 8px;
-  padding: 30px;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  height: 65vh;
+  /* border-radius: 8px; */
+  padding: 60px;
+
+  /* border: 1px solid rgba(255, 255, 255, 0.5); */
   backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px) !important;
 }
 .card {
   margin-right: auto;
   margin-left: auto;
   width: 250px;
   box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2);
-  height: 300px;
-  border-radius: 5px;
+  height: 100px !important;
+
   backdrop-filter: blur(7px);
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.5) !important;
   padding: 10px;
-  text-align: center;
 }
+
 input[type="text"],
 input[type="date"],
 input[type="email"],
 select {
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 5px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;

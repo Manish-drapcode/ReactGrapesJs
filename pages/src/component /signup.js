@@ -1,27 +1,22 @@
 import { React, Component } from "react";
 import { Formik } from "formik";
-import "./login.css";
+
 import "bootstrap/dist/css/bootstrap.css";
-class Login extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
 
-    this.initialState = { name: "", email: "", password: "", date: "" };
+    this.initialState = { email: "", password: "" };
   }
   Validate = (values) => {
     const errors = {};
-    if (!values.name) {
-      errors.name = "Required";
-    }
     if (!values.email) {
       errors.email = "Required";
     }
     if (!values.password) {
       errors.password = "Required";
     }
-    if (!values.date) {
-      errors.password = "Required";
-    }
+
     return errors;
   };
 
@@ -35,10 +30,10 @@ class Login extends Component {
   render() {
     return (
       <>
-        <div className="container d-flex justify-content-center align-content-center">
-          <div className="card w-50 p-10 m-10 text-white ">
-            <h3 className="text-center">Signup</h3>
-            <div className="card-body">
+        <div className="container d-flex justify-content-center align-content-center ">
+          <div className="card w-50 p-15 m-15 text-white h-50px">
+            <h3>Login</h3>
+            <div className="card-body vh-50">
               <div id="formdetails">
                 <Formik
                   initialValues={this.initialState}
@@ -59,18 +54,6 @@ class Login extends Component {
                   }) => (
                     <form onSubmit={handleSubmit}>
                       <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Enter Name"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.name}
-                      />
-                      <span>{errors.name && touched.name && errors.name}</span>
-                      <br />
-
-                      <input
                         type="email"
                         id="email"
                         name="email"
@@ -79,21 +62,9 @@ class Login extends Component {
                         onBlur={handleBlur}
                         value={values.email}
                       />
-                      <span>
+                      <span className="display-block">
                         {errors.email && touched.email && errors.email}
                       </span>
-                      <br />
-
-                      <input
-                        type="date"
-                        id="date"
-                        name="date"
-                        placeholder="dd/mm/yy"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.date}
-                      />
-                      <span>{errors.date && touched.date && errors.date}</span>
                       <br />
 
                       <input
@@ -108,7 +79,6 @@ class Login extends Component {
                       <span>
                         {errors.password && touched.password && errors.password}
                       </span>
-                      <br></br>
                       <input
                         type="submit"
                         value="Submit"
@@ -125,4 +95,4 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+export default Signup;
