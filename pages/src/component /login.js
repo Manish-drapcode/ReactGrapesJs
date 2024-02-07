@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import "./login.css";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +17,6 @@ class Login extends Component {
       errors.email = "Required";
     }
     if (!values.password) {
-      console.log(values.password);
       errors.password = "Required";
     }
 
@@ -34,8 +33,12 @@ class Login extends Component {
       const response = await axios.get(url, { params: data });
 
       sessionStorage.setItem("token", response.data);
-      const { history } = this.props;
-      history.push("/lists");
+      console.log("this.props", this);
+      window.location.href = "http://localhost:3000/lists";
+
+      // const { history } = this.props;
+      // history.push("/lists");
+      // console.log(Navigate("/lists"));
     } catch (eror) {
       console.log(eror);
     }

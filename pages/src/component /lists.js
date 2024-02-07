@@ -6,18 +6,26 @@ class Lists extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        { name: "manish", pagenumber: 1 },
-        { name: "Abimanyu", pagenumber: 2 },
-        { name: "Abhijit", pagenumber: 3 },
-      ],
+      data: [],
+      log: false,
     };
   }
 
   async componentDidMount() {
     const data = { userId: "" };
     // const response = await axios.get(process.env.PAGE_URL + "/lists", data);
-    console.log(process.env.PAGE_URL);
+    const url = "http://localhost:3003/pages/list";
+    const response = await axios.get(url, {
+      headers: { authorization: sessionStorage.getItem("token") },
+    });
+    // console.log(response);
+    await this.setState({ data: response.data });
+    console.log("response data ", response.data);
+    console.log("state data", this.state.data);
+    if (this.state.data) {
+      console.log("this state data ");
+      this.setState({ log: !this.state.log });
+    }
   }
 
   render() {
@@ -25,22 +33,23 @@ class Lists extends Component {
       <>
         <div className="container ">
           <ul className=" d-flex">
-            {this.state.data.map((page) => (
-              <div className="card py-1 my-1 " key={page.pagenumber}>
-                <h3 className="text-center text-white">{page.name}</h3>
-                <div className="card-body">
-                  <p className="text-center text-white">{page.pagenumber}</p>
-                  <div className="d-flex flex-row-reverse">
-                    <button className="btn btn-outline-primary text-white    ">
-                      delete
-                    </button>
-                    <button className="btn btn-outline-primary text-white ">
-                      details
-                    </button>
+            {this.state.log &&
+              this.state.data.map((page) => (
+                <div className="card py-1 my-1 ">
+                  <h3 className="text-center text-white">{page.name}</h3>
+                  <div className="card-body">
+                    <p className="text-center text-white">{page.comments}</p>
+                    <div className="d-flex flex-row-reverse">
+                      <button className="btn btn-outline-primary text-white    ">
+                        delete
+                      </button>
+                      <button className="btn btn-outline-primary text-white ">
+                        details
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </ul>
         </div>
       </>

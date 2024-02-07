@@ -1,8 +1,19 @@
 import { React, Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
+import { Button, Modal, ModalFooter, ModalHeader, ModalBody } from "reactstrap";
+import CreatePage from "./createpage";
+import axios from "axios";
 class NavBar extends Component {
-  handleClick() {}
+  constructor(props) {
+    super(props);
+    this.state = { model: false };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    console.log("toggle button");
+    this.setState({ model: !this.state.model });
+  }
 
   render() {
     return (
@@ -44,6 +55,19 @@ class NavBar extends Component {
               >
                 Create New
               </button>
+              <Modal isOpen={this.state.model} toggle={this.handleClick}>
+                <ModalHeader toggle={this.handleClick}>
+                  Create a New Editor{" "}
+                </ModalHeader>
+                <ModalBody>
+                  <CreatePage />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="primary" onClick={this.handleClick}>
+                    close
+                  </Button>
+                </ModalFooter>
+              </Modal>
             </div>
           </div>
         </nav>
